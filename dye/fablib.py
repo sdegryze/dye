@@ -9,11 +9,13 @@ from fabric.operations import require, prompt, get, run, sudo, local, put
 from fabric.state import env
 from fabric.contrib import files
 from fabric import utils
+from inspect import ismodule
 
 
 def _setup_paths(project_settings):
     # first merge in variables from project_settings - but ignore __doc__ etc
-    user_settings = [x for x in vars(project_settings).keys() if not x.startswith('__')]
+    user_settings = [x for (x, v) in vars(project_settings).items() if not x.startswith('__') and
+                                                                       not ismodule(v)]
     for setting in user_settings:
         env[setting] = vars(project_settings)[setting]
 
