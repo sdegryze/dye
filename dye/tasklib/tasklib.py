@@ -28,12 +28,14 @@ from .django import (collect_static, create_private_settings,
 from .util import _check_call_wrapper, _call_wrapper, _rm_all_pyc
 # this is a global dictionary
 from .environment import env
+from inspect import module
 
 
 def _setup_paths(project_settings, localtasks):
     """Set up the paths used by other tasks"""
     # first merge in variables from project_settings - but ignore __doc__ etc
-    user_settings = [x for x in vars(project_settings).keys() if not x.startswith('__')]
+    user_settings = [x for (x, v) in vars(project_settings).items() if not x.startswith('__') and
+                                                                       not ismodule(v)]
     for setting in user_settings:
         env.setdefault(setting, vars(project_settings)[setting])
 
