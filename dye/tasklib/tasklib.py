@@ -28,7 +28,7 @@ from .django import (collect_static, create_private_settings,
 from .util import _check_call_wrapper, _call_wrapper, _rm_all_pyc
 # this is a global dictionary
 from .environment import env
-from inspect import module
+from inspect import ismodule
 
 
 def _setup_paths(project_settings, localtasks):
