@@ -300,7 +300,9 @@ class MySQLManager(DBManager):
 
         # don't use "with" for compatibility with python 2.3 on whov2hinari
         cron_file.write('#!/bin/sh\n')
-        cron_file.write('/usr/bin/mysqldump ' +
+        mysql_dump_command = r'/usr/bin/mysqldump ' if os.path.exists(r'/usr/bin/mysqldump')
+            else r'/usr/bin/local/mysqldump '"
+        cron_file.write(mysql_dump_command +
                         ' '.join(self.create_cmdline_args()))
         cron_file.write(' > %s' % dump_file_stub)
         cron_file.write(r'`/bin/date +\%d`.sql')
