@@ -39,8 +39,8 @@ import sys
 import docopt
 import inspect
 
-from dye import tasklib
-from dye.tasklib.exceptions import TasksError
+from dyeharder import tasklib
+from dyeharder.tasklib.exceptions import TasksError
 
 localtasks = None
 
