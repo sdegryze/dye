@@ -6,7 +6,7 @@ setup(
     author='Hamish Downer',
     #author_email='hamish+dye@aptivate.org',
     packages=['dyeharder', 'dyeharder.test'],
-    scripts=['dye/tasks.py'],
+    scripts=['dyeharder/tasks.py'],
     #url='http://pypi.python.org/pypi/Dye/',
     license='LICENSE.txt',
     description='A set of functions to improve deploy scripts',
